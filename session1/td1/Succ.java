@@ -9,10 +9,33 @@ public class Succ implements INat {
         this.predecesseur = predecesseur;
     }
 
+    //Fabrique
+    @Override
+    public INat creerNatAvecValeur(int val) {
+        if(val == 0)
+            return new Zero();
+        return this.creerSuccesseur(this.creerNatAvecValeur(val - 1));
+    }
+
+    @Override
+    public INat creerZero() {
+        return new Zero();
+    }
+
+    @Override
+    public INat creerSuccesseur(INat predecesseur) {
+        return new Succ(predecesseur);
+    }
+
+    @Override
+    public INat creerNatAvecRepresentation(String repDecimale) {
+        return this.creerNatAvecValeur(Integer.parseInt(repDecimale));
+    }
+
     //Services
     @Override
     public int val() {
-        return 0;
+        return 1 + this.predecesseur().val();
     }
 
     @Override
@@ -22,66 +45,65 @@ public class Succ implements INat {
 
     @Override
     public INat predecesseur() throws UnsupportedOperationException {
-        return null;
+        return this.predecesseur;
     }
 
     @Override
     public int taille() {
-        return 0;
+        return Integer.toString(this.val()).length();
     }
 
     @Override
     public int chiffre(int i) {
-        return 0;
+        if(i >= this.taille())
+            return 0;
+        return Character.getNumericValue(this.toString().charAt(this.taille() - 1 - i));
     }
 
     @Override
     public INat modulo(INat x) {
-        return null;
+        return this.creerNatAvecValeur(this.val() % x.val());
     }
 
     @Override
     public INat div(INat x) {
-        return null;
+        return this.creerNatAvecValeur(this.val() / x.val());
     }
 
     @Override
     public INat somme(INat x) {
-        return null;
+        return this.creerNatAvecValeur(this.val() + x.val());
     }
 
     @Override
     public INat produit(INat x) {
-        return null;
+        return this.creerNatAvecValeur(this.val() * x.val());
     }
 
     @Override
     public INat zero() {
-        return null;
+        return new Zero();
     }
 
     @Override
     public INat un() {
-        return null;
+        return this.creerNatAvecValeur(1);
     }
 
     @Override
-    public INat creerNatAvecValeur(int val) {
-        return null;
+    public String toString(){
+        return Integer.toString(this.val());
     }
 
     @Override
-    public INat creerZero() {
-        return null;
-    }
-
-    @Override
-    public INat creerSuccesseur(INat predecesseur) {
-        return null;
-    }
-
-    @Override
-    public INat creerNatAvecRepresentation(String repDecimale) {
-        return null;
+    public boolean equals(Object o){
+        boolean retour;
+        try{
+            retour = this.val() == ((INat)o).val();
+        }
+        catch (Exception ex){
+            retour = false;
+        }
+        return retour;
     }
 }

@@ -1,7 +1,31 @@
 package session1.td1;
 
 public class Zero implements INat {
+    //Constructeur
     public Zero(){
+    }
+
+    //Fabrique
+    @Override
+    public INat creerNatAvecValeur(int val) {
+        if(val == 0)
+            return this.creerZero();
+        return this.creerSuccesseur(this.creerNatAvecValeur(val - 1));
+    }
+
+    @Override
+    public INat creerZero() {
+        return this;
+    }
+
+    @Override
+    public INat creerSuccesseur(INat predecesseur) {
+        return new Succ(predecesseur);
+    }
+
+    @Override
+    public INat creerNatAvecRepresentation(String repDecimale) {
+        return this.creerNatAvecValeur(Integer.parseInt(repDecimale));
     }
 
     //Services
@@ -22,7 +46,7 @@ public class Zero implements INat {
 
     @Override
     public int taille() {
-        return 0;
+        return 1;
     }
 
     @Override
@@ -42,41 +66,38 @@ public class Zero implements INat {
 
     @Override
     public INat somme(INat x) {
-        return null;
+        return x;
     }
 
     @Override
     public INat produit(INat x) {
-        return null;
+        return this;
     }
 
     @Override
     public INat zero() {
-        return null;
+        return this;
     }
 
     @Override
     public INat un() {
-        return null;
+        return this.creerNatAvecValeur(1);
     }
 
     @Override
-    public INat creerNatAvecValeur(int val) {
-        return null;
+    public String toString(){
+        return "0";
     }
 
     @Override
-    public INat creerZero() {
-        return null;
-    }
-
-    @Override
-    public INat creerSuccesseur(INat predecesseur) {
-        return null;
-    }
-
-    @Override
-    public INat creerNatAvecRepresentation(String repDecimale) {
-        return null;
+    public boolean equals(Object o){
+        boolean retour;
+        try{
+            retour = this.val() == ((INat)o).val();
+        }
+        catch (Exception ex){
+            retour = false;
+        }
+        return retour;
     }
 }

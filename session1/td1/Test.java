@@ -6,6 +6,10 @@ public class Test {
         test(new NatParInt(0));
         System.out.println("Test NatDecimal");
         test(new NatDecimal("0"));
+        System.out.println("Test Zero");
+        test(new Zero());
+        System.out.println("Test Succ");
+        test(new Succ(new Zero()));
     }
 
     private static void test(IFabriqueNat fabrique){

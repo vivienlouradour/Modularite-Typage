@@ -111,7 +111,14 @@ public class NatDecimal implements INat {
 
     @Override
     public boolean equals(Object o){
-        return this.val() == ((INat)o).val();
+        boolean retour;
+        try{
+            retour = this.val() == ((INat)o).val();
+        }
+        catch (Exception ex){
+            retour = false;
+        }
+        return retour;
     }
 
 

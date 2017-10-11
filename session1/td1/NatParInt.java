@@ -107,6 +107,13 @@ public class NatParInt implements INat {
 
     @Override
     public boolean equals(Object o){
-        return ((INat)o).val() == this.val();
+        boolean retour;
+        try{
+            retour = this.val() == ((INat)o).val();
+        }
+        catch (Exception ex){
+            retour = false;
+        }
+        return retour;
     }
 }
