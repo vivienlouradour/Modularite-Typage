@@ -2,6 +2,9 @@ package session2.td.heritageDescendant;
 
 import session1.td_corrige.Nat;
 
+// Une interface concrète serait aussi possible.
+// - Avantage : il est alors possible de décomposer en plusieurs interfaces puis
+//   de les combiner.
 public abstract class AlgebreNatParInt implements Nat{
 
 	@Override
@@ -23,7 +26,7 @@ public abstract class AlgebreNatParInt implements Nat{
 	public Nat produit(Nat x) {
 		return this.creerNatAvecValeur(this.val() * x.val());
 	}
-	
+
 	@Override
 	public Nat modulo(Nat x) {
 		return this.creerNatAvecValeur(this.val() % x.val());
@@ -41,7 +44,7 @@ public abstract class AlgebreNatParInt implements Nat{
 		Nat x = (Nat)obj;
 		return this.val() == x.val();
 	}
-	
+
 	@Override
 	public String toString() {
 		return Integer.toString(this.val());

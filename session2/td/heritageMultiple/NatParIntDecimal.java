@@ -2,14 +2,15 @@ package session2.td.heritageMultiple;
 
 import session1.td_corrige.Nat;
 
-public class NatParInt extends IntPositif implements AlgebreNatParInt{
-    public NatParInt(int val){
+public class NatParIntDecimal extends IntPositif implements AlgebreNatDecimal{
+
+    public NatParIntDecimal(int val){
         super(val);
     }
 
     @Override
-    public Nat creerNatAvecValeur(int val){
-        return new NatParInt(val);
+    public Nat creerNatAvecValeur(int val) {
+        return new NatParIntDecimal(val);
     }
 
     @Override
